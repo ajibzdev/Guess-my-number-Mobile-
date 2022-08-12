@@ -20,6 +20,13 @@ import InstructionText from "../components/ui/InstructionText";
 import GuessLogItem from "../components/game/GuessLogItem";
 
 // generate random number between
+/* 
+  @param minmum number to start generating from
+  @param maximum limit for the number.
+  @param number you dont want to appear in the guess
+*/
+
+/*
 function generateRandomBetween(min, max, exclude) {
   const randNum = Math.floor(Math.random() * (max - min)) + min;
 
@@ -28,7 +35,13 @@ function generateRandomBetween(min, max, exclude) {
   } else {
     return randNum;
   }
+} */
+
+function generateRandomBetween(min, max, exclude) {
+  const randNum = Math.floor((min + max) / 2);
+  return randNum;
 }
+console.log(generateRandomBetween(1, 100, 50));
 
 let minBoundary = 1;
 let maxBoundary = 100;
@@ -40,15 +53,15 @@ const GameScreen = ({ chosenNumber, onGameOver }) => {
 
   const { height, width } = useWindowDimensions();
   const marginTop = height < 420 ? 30 : 100;
-  const listPadding = height < 420 ? 30 : 16;
+  const listPadding = height < 420 ? 12 : 16;
 
   const nextGuessHandler = (direction) => {
     // direction => 'lower' or 'greater'
 
     // when user lies to the computer
     if (
-      (direction === "lower" && currentGuess < chosenNumber) ||
-      (direction === "greater" && currentGuess > chosenNumber)
+      (direction === "lower" && currentGuess < chosenNumber) || // user presseed lower && 50 < chosenNumber 86
+      (direction === "greater" && currentGuess > chosenNumber) // user pressed greater && 50 > chosenNumber 86
     ) {
       Alert.alert("Dont lie!", "You know that this is wrong", [
         {

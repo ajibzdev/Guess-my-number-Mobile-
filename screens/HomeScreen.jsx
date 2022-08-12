@@ -61,6 +61,7 @@ const HomeScreen = ({ onPickNumber }) => {
               style={styles.modal}
               visible={modalIsVisible}
               animationType={"fade"}
+              presentationStyle={"formSheet"}
             >
               <LinearGradient
                 colors={[Colors.primary600, Colors.primary800]}
